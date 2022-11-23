@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "71198e04-421f-4113-8aa4-acfa3ff988d4",
+		"name": "Foodgram",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20216456"
+	},
+	"item": [
+		{
+			"name": "recipes.views.TagsViewSet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/tags/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
