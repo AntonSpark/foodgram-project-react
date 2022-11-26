@@ -18,8 +18,6 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -110,7 +108,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-#USE_TZ = True
+USE_TZ = True
 
 
 STATIC_URL = '/static/'
@@ -128,8 +126,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DJOSER = {
     'LOGIN_FIELD': 'email',

@@ -65,7 +65,7 @@ class RecipeListSerializer(ModelSerializer):
         queryset = AmountIngredient.objects.filter(recipe=recipe)
         return AmountIngredientSerializer(queryset, many=True).data
 
-    def _get_is_object_exists(self, model, obj):
+    def get_is_object_exists(self, model, obj):
         user = self.context['request'].user
         return (
             user.is_authenticated
@@ -76,10 +76,10 @@ class RecipeListSerializer(ModelSerializer):
         )
 
     def get_is_favorited(self, obj):
-        return self._get_is_object_exists(FavoriteRecipe, obj)
+        return self.get_is_object_exists(FavoriteRecipe, obj)
 
     def get_is_in_shopping_cart(self, obj):
-        return self._get_is_object_exists(ShoppingCart, obj)
+        return self.get_is_object_exists(ShoppingCart, obj)
 
 
 class AmountIngredientForRecipeCreatSerializer(serializers.ModelSerializer):
@@ -145,11 +145,11 @@ class RecipeCreatSerializer(serializers.ModelSerializer):
         return recipe
 
     def update(self, recipe, validated_data):
+        recipe.tags.clear()
+        AmountIngredient.objects.filter(recipe=recipe).delete()
         ingredients = validated_data.pop('ingredients')
         tags = validated_data.pop('tags')
-        AmountIngredient.objects.filter(recipe=recipe).delete()
-        self.add_ingredients_and_tags(ingredients, recipe)
-        recipe.tags.set(tags)
+        self.add_ingredients_and_tags(recipe, ingredients, tags)
         return super().update(recipe, validated_data)
 
     def to_representation(self, instance):

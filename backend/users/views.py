@@ -10,7 +10,7 @@ from .serializers import FollowListSerializer, SubscribeSerializer
 
 
 class FollowViewSet(UserViewSet):
-    """ViewSet подпискок на авторов."""
+    """ViewSet подписок на авторов."""
     queryset = User.objects.all()
     serializer_class = FollowListSerializer
     pagination_class = CustomPagination

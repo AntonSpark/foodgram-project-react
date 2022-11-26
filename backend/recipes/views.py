@@ -1,5 +1,4 @@
 from django.db.models import Sum
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
@@ -14,6 +13,7 @@ from .models import (
 )
 from .pagination import CustomPagination
 from .permissions import IsAllowedOrReadOnly
+from .utils import make_shopping_list
 from .serializers import (
     FavoriteSerializer, IngredientSerializer, RecipeListSerializer,
     RecipeCreatSerializer, ShoppingCartSerializer, TagSerializer
@@ -105,13 +105,4 @@ class RecipeViewSet(ModelViewSet):
             'ingredient__measurement_unit',
         ).annotate(amount=Sum('amount'))
 
-        shopping_cart = '\n'.join([
-            f'{ingredient["ingredient__name"]}: {ingredient["amount"]}'
-            f'{ingredient["ingredient__measurement_unit"]}'
-            for ingredient in ingredients
-        ])
-        response = HttpResponse(shopping_cart, content_type='text')
-        response['Content-Disposition'] = (
-            'attachment;filename=shopping_cart.pdf'
-        )
-        return response
+        return make_shopping_list(ingredients)

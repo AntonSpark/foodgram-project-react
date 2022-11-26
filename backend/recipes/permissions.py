@@ -4,7 +4,7 @@ from rest_framework.permissions import BasePermission
 
 class IsAllowedOrReadOnly(BasePermission):
     """У всех кроме автора и суперюзера есть доступ только к GET."""
-    def has_object_permission(self, request, view):
+    def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS or (
             request.user and request.user.is_authenticated
         )
