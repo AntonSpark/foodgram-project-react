@@ -9,6 +9,7 @@ class Api {
       if (res.status === 204) {
         return resolve(res)
       }
+      console.log(res)
       const func = res.status < 400 ? resolve : reject
       res.json().then(data => func(data))
     })
