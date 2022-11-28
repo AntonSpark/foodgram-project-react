@@ -13,11 +13,11 @@ from .models import (
 )
 from .pagination import CustomPagination
 from .permissions import IsAllowedOrReadOnly
-from .utils import make_shopping_list
 from .serializers import (
     FavoriteSerializer, IngredientSerializer, RecipeListSerializer,
     RecipeCreatSerializer, ShoppingCartSerializer, TagSerializer
 )
+from .utils import make_shopping_list
 
 
 class IngredientsViewSet(ReadOnlyModelViewSet):
