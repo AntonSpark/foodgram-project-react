@@ -40,7 +40,7 @@ class RecipeListSerializer(ModelSerializer):
     """Сериализатор рецепта."""
     tags = TagSerializer(many=True, read_only=True)
     author = CustomUserSerializer(read_only=True)
-    ingredients = SerializerMethodField(read_only=True)
+    ingredients = AmountIngredientSerializer(many=True, source='ingredient_for_recipe')
     is_favorited = SerializerMethodField(read_only=True)
     is_in_shopping_cart = SerializerMethodField(read_only=True)
     image = Base64ImageField()
@@ -59,11 +59,6 @@ class RecipeListSerializer(ModelSerializer):
             'text',
             'cooking_time'
         )
-
-    @staticmethod
-    def get_ingredients(recipe):
-        queryset = AmountIngredient.objects.filter(recipe=recipe)
-        return AmountIngredientSerializer(queryset, many=True).data
 
     def get_is_object_exists(self, model, obj):
         user = self.context['request'].user
@@ -109,7 +104,7 @@ class RecipeCreatSerializer(serializers.ModelSerializer):
     def validate(self, data):
         ingredients = data['ingredients']
         if not ingredients:
-            raise serializers.ValidationError('Добавьте ингридиент')
+            raise serializers.ValidationError('Добавьте ингредиент')
         ingredients_list = []
         for ingredient in ingredients:
             ingredient_id = ingredient['id']

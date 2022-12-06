@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 def make_shopping_list(ingredients):
     shopping_cart = '\n'.join([
-            f'{ingredient["ingredient__name"]}: {ingredient["amount"]}'
+            f'{ingredient["ingredient__name"]}: {ingredient["number"]}'
             f'{ingredient["ingredient__measurement_unit"]}'
             for ingredient in ingredients
         ])
