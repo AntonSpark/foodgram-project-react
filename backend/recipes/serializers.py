@@ -13,14 +13,14 @@ class TagSerializer(ModelSerializer):
     """Сериализатор тэгов."""
     class Meta:
         model = Tag
-        fields = fields =  ('id', 'name', 'color', 'slug')
+        fields = ('id', 'name', 'color', 'slug')
 
 
 class IngredientSerializer(ModelSerializer):
     """Сериализатор ингредиентов."""
     class Meta:
         model = Ingredient
-        fields =  ('id', 'name', 'measurement_unit')
+        fields = ('id', 'name', 'measurement_unit')
 
 
 class AmountIngredientSerializer(ModelSerializer):
@@ -40,7 +40,9 @@ class RecipeListSerializer(ModelSerializer):
     """Сериализатор рецепта."""
     tags = TagSerializer(many=True, read_only=True)
     author = CustomUserSerializer(read_only=True)
-    ingredients = AmountIngredientSerializer(many=True, source='ingredient_for_recipe')
+    ingredients = AmountIngredientSerializer(
+        many=True, source='ingredient_for_recipe'
+    )
     is_favorited = SerializerMethodField(read_only=True)
     is_in_shopping_cart = SerializerMethodField(read_only=True)
     image = Base64ImageField()
@@ -99,7 +101,8 @@ class RecipeCreatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = ('author', 'name', 'image', 'tags', 'ingredients',
-            'text', 'cooking_time', 'id')
+            'text', 'cooking_time', 'id'
+        )
 
     def validate(self, data):
         ingredients = data['ingredients']
@@ -158,14 +161,14 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('id', 'name', 'image', 'cooking_time' )
+        fields = ('id', 'name', 'image', 'cooking_time')
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
     """Сериализатор избранных рецептов"""
     class Meta:
         model = FavoriteRecipe
-        fields = ('user', 'recipe' )
+        fields = ('user', 'recipe')
 
     def validate(self, data):
         request = self.context.get('request')

@@ -19,23 +19,22 @@ class IngredientsAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagsAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'color', 'slug',)
+    list_display = ('id', 'name', 'color', 'slug',)
     search_fields = ('name',)
     list_filter = ('name',)
     empty_value_display = EMPTY_VALUE
 
 
-
 @admin.register(AmountIngredient)
 class AmountAdmin(admin.ModelAdmin):
-    list_display = ('id', 'ingredient','recipe', 'amount')
+    list_display = ('id', 'ingredient', 'recipe', 'amount')
     search_fields = ('recipe',)
     list_filter = ('recipe',)
     empty_value_display = EMPTY_VALUE
 
 
 class AmountIngredientsInline(admin.TabularInline):
-    model =AmountIngredient
+    model = AmountIngredient
     min_num = 1
 
 

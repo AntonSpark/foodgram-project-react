@@ -19,7 +19,6 @@ class RecipeFilter(FilterSet):
         model = Recipe
         fields = ('is_favorited', 'is_in_shopping_cart', 'author', 'tags')
 
-
     def get_is_favorited(self, queryset, name, data):
         if data and not self.request.user.is_anonymous:
             return queryset.filter(favorite__user=self.request.user)

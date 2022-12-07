@@ -4,7 +4,6 @@ from django.db.models import UniqueConstraint
 
 
 class User(AbstractUser):
-    
     username = models.CharField(
         max_length=150,
         unique=True,
