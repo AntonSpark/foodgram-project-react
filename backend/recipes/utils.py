@@ -9,6 +9,5 @@ def make_shopping_list(ingredients):
         ])
     response = HttpResponse(shopping_cart, content_type='text')
     response['Content-Disposition'] = (
-            'attachment;filename=shopping_cart.pdf'
-        )
+        'attachment;filename=shopping_cart.pdf')
     return response

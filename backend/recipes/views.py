@@ -45,7 +45,7 @@ class RecipeViewSet(ModelViewSet):
         if self.request.method in SAFE_METHODS:
             return RecipeListSerializer
         return RecipeCreatSerializer
-    
+
     @staticmethod
     def create_object(request, pk, serializers):
         data = {'user': request.user.id, 'recipe': pk}
@@ -62,8 +62,7 @@ class RecipeViewSet(ModelViewSet):
         object.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    def create_or_delete(self, http_method, recipe, key,
-                           model, serializer):
+    def create_or_delete(self, http_method, recipe, key, model, serializer):
         if http_method == 'POST':
             return self.create_object(request=recipe, pk=key,
                                       serializers=serializer)

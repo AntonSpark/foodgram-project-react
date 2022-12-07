@@ -100,8 +100,9 @@ class RecipeCreatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('author', 'name', 'image', 'tags', 'ingredients',
-            'text', 'cooking_time', 'id'
+        fields = (
+            'author', 'name', 'image', 'tags', 'ingredients',
+            'text', 'cooking_time', 'id' 
         )
 
     def validate(self, data):
