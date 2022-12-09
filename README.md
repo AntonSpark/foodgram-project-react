@@ -95,6 +95,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
+SECRET_KEY= ваш ключ
 
 DOCKER_PASSWORD=<пароль DockerHub>
 DOCKER_USERNAME=<имя пользователя DockerHub>
