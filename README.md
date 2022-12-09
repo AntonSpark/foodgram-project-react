@@ -95,7 +95,7 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
-SECRET_KEY= ваш ключ
+SECRET_KEY=<ваш ключ>
 
 DOCKER_PASSWORD=<пароль DockerHub>
 DOCKER_USERNAME=<имя пользователя DockerHub>
@@ -103,7 +103,7 @@ DOCKER_USERNAME=<имя пользователя DockerHub>
 USER=<username удаленного сервера>
 HOST=<публичный  IPv4 сервера>
 PASSPHRASE=<пароль для сервера>
-SSH_KEY= <SSH ключ>
+SSH_KEY=<SSH ключ>
 
 TELEGRAM_TO=<ID телеграм-аккаунта>
 TELEGRAM_TOKEN=<токен бота>
@@ -111,10 +111,10 @@ TELEGRAM_TOKEN=<токен бота>
 8. После успешного выполнения workflow, на сервере:
 создать и запустить миграции,
 создать суперпользователя, 
-подгружаем статику
-загрузить тэги и ингредиенты
+подгружаем статику,
+загружаем тэги и ингредиенты
 ```
-sudo docker exec -it anton_backend_1 bash
+sudo docker exec -it <имя сервера>_backend_1 bash
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py collectstatic --no-input
