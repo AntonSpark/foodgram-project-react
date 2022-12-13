@@ -45,10 +45,10 @@ class RecipeViewSet(ModelViewSet):
         if self.request.method in SAFE_METHODS:
             return RecipeListSerializer
         return RecipeCreatSerializer
-    
+
     def get_error(self):
         if self.request.method.GET and self.request.method.GET["error"]:
-            print ('ddd')
+            print('ddd')
 
     @staticmethod
     def create_object(request, pk, serializers):
