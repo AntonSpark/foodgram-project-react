@@ -42,9 +42,8 @@ class RecipeViewSet(ModelViewSet):
     pagination_class = CustomPagination
 
     def get_serializer_class(self):
-        if self.request.method in SAFE_METHODS:
-            return RecipeListSerializer
-        return RecipeCreatSerializer
+        if self.request.method and self.request.method['error']:
+            print('AFDASDF')
 
     @staticmethod
     def create_object(request, pk, serializers):
