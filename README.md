@@ -130,5 +130,4 @@ http://ваш_ip/recipes/
 
 Антон Искров
 
-
 ![This is an image](https://github.com/AntonSpark/foodgram-project-react/actions/workflows/foodgram-workflow.yml/badge.svg)
