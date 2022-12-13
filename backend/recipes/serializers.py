@@ -7,7 +7,6 @@ from users.serializers import CustomUserSerializer
 from .models import (
     FavoriteRecipe, Ingredient, AmountIngredient, Recipe, ShoppingCart, Tag
 )
-from .utils import representation
 
 
 class TagSerializer(ModelSerializer):
@@ -149,7 +148,8 @@ class RecipeCreatSerializer(serializers.ModelSerializer):
         return super().update(recipe, validated_data)
 
     def to_representation(self, instance):
-        return representation(self.context, instance, RecipeListSerializer)
+        serializer = RecipeListSerializer(instance)
+        return serializer.data
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -196,8 +196,3 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
                 'Рецепт уже в корзине!'
             )
         return data
-
-    def to_representation(self, instance):
-        request = self.context.get('request')
-        context = {'request': request}
-        return RecipeSerializer(instance.recipe, context=context).data

@@ -11,9 +11,3 @@ def make_shopping_list(ingredients):
     response['Content-Disposition'] = (
         'attachment;filename=shopping_cart.pdf')
     return response
-
-
-def representation(context, instance, serializer):
-    request = context.get('request')
-    new_context = {'request': request}
-    return serializer(instance, context=new_context).data
