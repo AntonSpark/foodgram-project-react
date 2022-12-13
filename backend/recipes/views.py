@@ -46,10 +46,6 @@ class RecipeViewSet(ModelViewSet):
             return RecipeListSerializer
         return RecipeCreatSerializer
 
-    def get_error(self):
-        if self.request.method.GET and self.request.method.GET["error"]:
-            print('ddd')
-
     @staticmethod
     def create_object(request, pk, serializers):
         data = {'user': request.user.id, 'recipe': pk}
