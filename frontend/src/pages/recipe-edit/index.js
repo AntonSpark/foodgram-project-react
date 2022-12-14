@@ -190,10 +190,13 @@ const RecipeEdit = ({ onItemDelete }) => {
             />
             <div className={styles.ingredientsAmountInputContainer}>
               <Input
+                type='number'
+                onkeypress="return event.charCode >= 48" min="1"
                 className={styles.ingredientsAmountInput}
                 inputClassName={styles.ingredientsAmountValue}
                 onChange={e => {
-                  const value = e.target.value
+                  let value = e.target.value
+                  if (value <= 0) { value = 1 }
                   setIngredientValue({
                     ...ingredientValue,
                     amount: value
