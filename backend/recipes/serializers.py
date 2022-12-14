@@ -33,7 +33,10 @@ class AmountIngredientSerializer(ModelSerializer):
 
     class Meta:
         model = AmountIngredient
-        fields = ('id', 'name', 'measurement_unit', 'amount')
+        fields = ('id', 'name', 'measurement_unit', 'amount') 
+        #TODO 
+        #1. увидеть amout в консоли
+        #2. пост валидация полей
 
 
 class RecipeListSerializer(ModelSerializer):
